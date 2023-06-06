@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SettingResource;
 
 class SettingController extends Controller
 {
@@ -13,7 +14,7 @@ class SettingController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $settings=Setting::all();
-        return $settings;
+        $settings=Setting::findOrFail(1);
+        return  new SettingResource($settings);
       }
 }
