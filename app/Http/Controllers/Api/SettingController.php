@@ -14,7 +14,10 @@ class SettingController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $settings=Setting::findOrFail(1);
-        return  new SettingResource($settings);
+        // $settings=Setting::findOrFail(1);
+        // return  new SettingResource($settings);
+
+        $settings=Setting::get();
+        return SettingResource::collection($settings);
       }
 }
