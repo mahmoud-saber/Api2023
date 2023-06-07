@@ -21,8 +21,8 @@ class SettingController extends Controller
         // $settings=Setting::get();
         // return SettingResource::collection($settings);
 
-        // $settings = Setting::find(1);
-        $settings = Setting::find(3);
+         $settings = Setting::find(1);
+        // $settings = Setting::find(3);
         if($settings){
             return ApiResponse::SendResponse(200,'Settings Retrieved successful',new SettingResource($settings));
         }
