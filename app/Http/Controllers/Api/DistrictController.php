@@ -13,9 +13,10 @@ class DistrictController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request,$city_id)
+    public function __invoke(Request $request)
     {
-        $District =District::where('city_id',$city_id)->get();
+        // $District =District::where('city_id',$city_id)->get();
+        $District =District::where('city_id',$request->input('city'))->get();
         if(count($District) > 0)
         {
             return ApiResponse::SendResponse(200,'Districts retrieved',DistrictResource::collection($District));

@@ -22,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/setting',SettingController::class);
 Route::get('/citing',CityController::class);
-Route::get('/districting/{city_id}',DistrictController::class);
+// Route::get('/districting/{city_id}',DistrictController::class);
+Route::get('/districting',DistrictController::class);
