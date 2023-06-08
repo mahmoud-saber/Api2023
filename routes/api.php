@@ -3,9 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CityController;
+use App\Http\Controllers\Api\DomainController;
+use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\DistrictController;
-use App\Http\Controllers\Api\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,15 @@ use App\Http\Controllers\Api\MessageController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+#---------------------------------module setting
 Route::get('/setting',SettingController::class);
+#---------------------------------module cities
 Route::get('/citing',CityController::class);
+#-----------------------------------module district
+
 // Route::get('/districting/{city_id}',DistrictController::class);
 Route::get('/districting',DistrictController::class);
 Route::post('/messages',MessageController::class);
+
+#-------------------------------------module domains
+Route::get('/domains',DomainController::class);
