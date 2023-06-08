@@ -25,4 +25,4 @@ Route::get('/setting',SettingController::class);
 Route::get('/citing',CityController::class);
 // Route::get('/districting/{city_id}',DistrictController::class);
 Route::get('/districting',DistrictController::class);
-Route::get('/messages',MessageController::class); 
+Route::post('/messages',MessageController::class);

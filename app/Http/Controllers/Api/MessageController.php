@@ -15,7 +15,7 @@ class MessageController extends Controller
      */
     public function __invoke(NewMessageRequest $request)
     {
-        $data = $request->validate();
+        $data = $request->validated();
         $record = Message::create($data);
 
         if($record){

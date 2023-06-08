@@ -38,7 +38,7 @@ class NewMessageRequest extends FormRequest
             'name'=>'required',
             'email'=>'required|email',
             'phone'=>'required',
-            'message'=>'required'
+            'message'=>'nullable'
         ];
     }
 
