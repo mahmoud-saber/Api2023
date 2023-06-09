@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->text('text')->nullable();
             $table->string('phone')->nullable();
-             $table->integer('domain_id')->unsigned()->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete("set null");
+            $table->integer('domain_id')->unsigned()->nullable();
             $table->foreign('domain_id')->references('id')->on('domains')->onDelete("set null");
             $table->timestamps();
         });

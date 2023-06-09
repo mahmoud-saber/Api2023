@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AdvertismentController;
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -42,3 +43,8 @@ Route::post('/messages',MessageController::class);
 
 #-------------------------------------module domains
 Route::get('/domains',DomainController::class);
+
+#---------------------------------------Adventisment
+Route::prefix('advent')->controller(AdvertismentController::class)->group(function(){
+    Route::get('/','index');
+});
