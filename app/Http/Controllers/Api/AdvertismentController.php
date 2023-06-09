@@ -34,4 +34,12 @@ class AdvertismentController extends Controller
         return ApiResponse::SendResponse(200,'No Advertisment Retrieved ',[]);
 
     }
+    public function latest()  {
+        $advent=Advertisement::latest()->take(2)->get();
+        if(count($advent) > 0){
+            return ApiResponse::SendResponse(200,'Latest Advertisement Retrieved',AdvertismentResource::collection($advent));
+        }
+            return ApiResponse::SendResponse(200,'They are not Latest Advertisement Retrieved',[]);
+
+    }
 }

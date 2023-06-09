@@ -47,4 +47,5 @@ Route::get('/domains',DomainController::class);
 #---------------------------------------Adventisment
 Route::prefix('advent')->controller(AdvertismentController::class)->group(function(){
     Route::get('/','index');
+    Route::get('/latest','latest');
 });
