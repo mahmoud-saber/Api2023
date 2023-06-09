@@ -42,4 +42,24 @@ class AdvertismentController extends Controller
             return ApiResponse::SendResponse(200,'They are not Latest Advertisement Retrieved',[]);
 
     }
+    public function domain($domain_id)  {
+        $advent=Advertisement::where('domain_id',$domain_id)->latest()->get();
+        if(count($advent) > 0){
+            return ApiResponse::SendResponse(200,'Tte latest Advertisement Retrieved in domain',AdvertismentResource::collection($advent));
+        }
+            return ApiResponse::SendResponse(200,'They are not Latest Advertisement Retrieved in domain',[]);
+
+    }
+    public function search(Request $request){
+        $word= $request->has('search') ? $request->input('search') : null;
+        // $word = $request->input('search') ?? null;
+        $advent =Advertisement::when($word !=null,function($query) use ($word){
+            $query->where('title','like','%'.$word.'%');
+        })->latest()->get();
+
+        if(count($advent) > 0){
+            return ApiResponse::SendResponse(200,'Search Complete',AdvertismentResource::collection($advent));
+        }
+            return ApiResponse::SendResponse(200,'Search not matched',[]);
+    }
 }

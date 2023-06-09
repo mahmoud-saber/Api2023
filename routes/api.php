@@ -48,4 +48,6 @@ Route::get('/domains',DomainController::class);
 Route::prefix('advent')->controller(AdvertismentController::class)->group(function(){
     Route::get('/','index');
     Route::get('/latest','latest');
+    Route::get('/domain/{domain_id}','domain');
+    Route::get('/search','search');
 });
