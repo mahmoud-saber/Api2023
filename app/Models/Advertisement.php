@@ -12,13 +12,17 @@ class Advertisement extends Model
     'slug',
     'text',
     'phone',
-    'domain_id'];
-    public function domain()
-    {
-        return $this->belongsTo(Domain::class);
-    }
+    'domain_id',
+    'user_id'];
+
+    
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function domain()
+    {
+        return $this->belongsTo(Domain::class);
     }
 }

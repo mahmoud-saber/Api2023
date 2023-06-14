@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\ApiResponse;
 use App\Models\Advertisement;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdvertismentRequest;
 use App\Http\Resources\AdvertismentResource;
 use Illuminate\Http\Request;
+use Spatie\FlareClient\Api;
 
 class AdvertismentController extends Controller
 {
@@ -61,5 +63,15 @@ class AdvertismentController extends Controller
             return ApiResponse::SendResponse(200,'Search Complete',AdvertismentResource::collection($advent));
         }
             return ApiResponse::SendResponse(200,'Search not matched',[]);
+    }
+    function create(AdvertismentRequest $request)  {
+        $data=$request->validated();
+        $data['user_id'] = $request->user()->id;
+        $record=Advertisement::create($data);
+        if($record){
+            return ApiResponse::SendResponse(201,'create Ads successful', new AdvertismentResource($record));
+        }
+        return ApiResponse::SendResponse(200,'Not create Ads', []);
+
     }
 }

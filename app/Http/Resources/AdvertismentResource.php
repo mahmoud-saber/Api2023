@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Advertisement;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,5 +20,5 @@ class AdvertismentResource extends JsonResource
             'title'=>$this->title,
             'description'=>$this->text,
             'phone'=>$this->phone,
-        ];    }
+         ];    }
 }

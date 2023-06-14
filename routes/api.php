@@ -50,4 +50,8 @@ Route::prefix('advent')->controller(AdvertismentController::class)->group(functi
     Route::get('/latest','latest');
     Route::get('/domain/{domain_id}','domain');
     Route::get('/search','search');
+    Route::middleware('auth:sanctum')->group(function(){
+     Route::post('create','create');
+
+    });
 });
