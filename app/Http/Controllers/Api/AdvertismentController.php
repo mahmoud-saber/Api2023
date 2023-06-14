@@ -51,8 +51,8 @@ class AdvertismentController extends Controller
 
     }
     public function search(Request $request){
-        $word= $request->has('search') ? $request->input('search') : null;
-        // $word = $request->input('search') ?? null;
+        // $word= $request->has('search') ? $request->input('search') : null;
+        $word = $request->input('search') ?? null;
         $advent =Advertisement::when($word !=null,function($query) use ($word){
             $query->where('title','like','%'.$word.'%');
         })->latest()->get();
