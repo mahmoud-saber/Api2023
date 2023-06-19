@@ -87,4 +87,26 @@ class AdvertismentController extends Controller
             return ApiResponse::SendResponse(201,'updated Ads successful', new AdvertismentResource($Aid));
         }
     }
+
+    function delete(Request $request,$id)  {
+        $Aid = Advertisement::findOrFail($id);
+        if($Aid->user_id !=$request->user()->id){
+            return ApiResponse::SendResponse(403,'You aren`t allowed this action',[]);
+        }
+          $delete=$Aid->delete();
+        if($delete){
+            return ApiResponse::SendResponse(201,'deleted Ads successful', []);
+        }
+    }
+
+
+    function show_ads(Request $request)  {
+        $Ads = Advertisement::where('user_id',$request->user()->id)->latest()->get();
+        if(count($Ads) > 0){
+            return ApiResponse::SendResponse(200,'My Ads Successful',AdvertismentResource::collection($Ads));
+        }
+
+            return ApiResponse::SendResponse(200,'You don`t have Ads', []);
+
+    }
 }

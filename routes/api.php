@@ -53,6 +53,8 @@ Route::prefix('advent')->controller(AdvertismentController::class)->group(functi
     Route::middleware('auth:sanctum')->group(function(){
      Route::post('create','create');
      Route::post('update/{id}','update');
+     Route::get('delete/{id}','delete');
+     Route::get('show','show_ads');
 
     });
 });
