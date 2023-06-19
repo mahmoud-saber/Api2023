@@ -37,7 +37,7 @@ Route::get('/setting',SettingController::class);
 Route::get('/citing',CityController::class);
 #-----------------------------------module district
 
-// Route::get('/districting/{city_id}',DistrictController::class);
+Route::get('/districting/{city_id}',DistrictController::class);
 Route::get('/districting',DistrictController::class);
 Route::post('/messages',MessageController::class);
 
@@ -52,6 +52,7 @@ Route::prefix('advent')->controller(AdvertismentController::class)->group(functi
     Route::get('/search','search');
     Route::middleware('auth:sanctum')->group(function(){
      Route::post('create','create');
+     Route::post('update/{id}','update');
 
     });
 });

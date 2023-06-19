@@ -64,6 +64,8 @@ class AdvertismentController extends Controller
         }
             return ApiResponse::SendResponse(200,'Search not matched',[]);
     }
+
+
     function create(AdvertismentRequest $request)  {
         $data=$request->validated();
         $data['user_id'] = $request->user()->id;
@@ -73,5 +75,16 @@ class AdvertismentController extends Controller
         }
         return ApiResponse::SendResponse(200,'Not create Ads', []);
 
+    }
+    function update(AdvertismentRequest $request,$id)  {
+        $Aid = Advertisement::findOrFail($id);
+        if($Aid->user_id !=$request->user()->id){
+            return ApiResponse::SendResponse(403,'You aren`t allowed this action',[]);
+        }
+        $data=$request->validated();
+         $updated=$Aid->update($data);
+        if($updated){
+            return ApiResponse::SendResponse(201,'updated Ads successful', new AdvertismentResource($Aid));
+        }
     }
 }
